@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第二回目</title>
+    <style>
+        /* 基础样式：隐藏滚动条，图片全屏居中 */
+        * { margin: 0; padding: 0; }
+        body { overflow: hidden; height: 100vh; cursor: pointer; }
+        .image-box {
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .image-box img {
+            max-width: 100%;
+            max-height: 100vh;
+            object-contain;
+        }
+        /* 隐藏类：控制图片显示/隐藏 */
+        .hidden { display: none !important; }
+    </style>
+</head>
+<body>
+    <!-- 第一张图：路径 img/bg.png -->
+    <div id="img1" class="image-box">
+        <img src="img/bg.png" alt="第一张图">
+    </div>
+
+    <!-- 第二张图：路径 img/111.png（默认隐藏） -->
+    <div id="img2" class="image-box hidden">
+        <img src="img/111.png" alt="第二张图">
+    </div>
+
+    <!-- 第三张图：路径 img/222.png（默认隐藏） -->
+    <div id="img3" class="image-box hidden">
+        <img src="img/222.png" alt="第三张图">
+    </div>
+
+    <script>
+        // 点击页面任意位置切换图片（1→2→3→1循环）
+        let currentImg = 1;
+        const totalImgs = 3;
+
+        document.body.addEventListener('click', () => {
+            // 隐藏当前图片
+            document.getElementById(`img${currentImg}`).classList.add('hidden');
+            // 切换到下一张（循环）
+            currentImg = currentImg === totalImgs ? 1 : currentImg + 1;
+            // 显示新图片
+            document.getElementById(`img${currentImg}`).classList.remove('hidden');
+        });
+    </script>
+</body>
+</html>
